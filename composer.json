@@ -1,0 +1,17 @@
+{
+    "name": "phpcraft/csv",
+    "type": "library",
+    "description": "CSV (Comma Separated Values) reader and writer wrapper",
+    "license": "MIT",
+    "authors": [
+	{
+            "name": "vuk"
+	}
+    ],
+    "league/csv": "^8.0",
+    "autoload": {
+        "psr-4" : {
+            "PHPCraft\\Csv\\" : "src/"
+        }
+    }
+}
