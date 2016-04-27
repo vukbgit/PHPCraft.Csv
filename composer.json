@@ -9,7 +9,7 @@
 	}
     ],
     "require": {
-            "league/csv": "^8.0"
+            "goodby/csv": "*"
     },
     "autoload": {
         "psr-4" : {
