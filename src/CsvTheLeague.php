@@ -31,9 +31,9 @@ class CsvTheLeague implements CsvInterface
      * @param array $records
      **/
     public function fromObjects($name, array $records){
-        if(!$this->writer) $this->writer = Writer::createFromFileObject(new SplTempFileObject());
-        $this->writer->setDelimiter($this->delimiter);
-        $this->writer->insertAll($records);
-        $this->writer->output($name.'.csv');
+        $writer = Writer::createFromFileObject(new SplTempFileObject());
+        $writer->setDelimiter($this->delimiter);
+        $writer->insertAll($records);
+        $writer->output($name.'.csv');
     }
 }
