@@ -44,13 +44,17 @@ class CsvGoodbyAdapter implements CsvInterface
      **/
     public function fromObjects($name, array $records)
     {
-        $config = new ExporterConfig();
-        $config->setDelimiter($this->delimiter);
-        if($this->columnHeaders) $config->setColumnHeaders($this->columnHeaders);
-        $exporter = new Exporter($config);
-        ob_start();
-        $exporter->export('php://output', $records);
-        return ob_get_clean();
+        try{
+            $config = new ExporterConfig();
+            $config->setDelimiter($this->delimiter);
+            if($this->columnHeaders) $config->setColumnHeaders($this->columnHeaders);
+            $exporter = new Exporter($config);
+            ob_start();
+            $exporter->export('php://output', $records);
+            return ob_get_clean();
+        }catch(\Goodby\CSV\Export\Standard\Exception\StrictViolationException $exception){
+            throw new \Exception('Wrong number of columns in CSV creation');
+        }
     }
     
     /**
