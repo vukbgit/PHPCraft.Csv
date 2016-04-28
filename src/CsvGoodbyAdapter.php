@@ -10,7 +10,7 @@ use Goodby\CSV\Export\Standard\ExporterConfig;
  *
  * @author vuk <info@vuk.bg.it>
  */
-class CsvGoodby implements CsvInterface
+class CsvGoodbyAdapter implements CsvInterface
 {
     private $delimiter = ',';
     private $columnHeaders;
