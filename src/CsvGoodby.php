@@ -16,7 +16,7 @@ class CsvGoodby implements CsvInterface
     private $columnHeaders;
     
     /**
-     * Sets delmiter
+     * Sets delimiter
      *
      * @param string $delimiter
      **/

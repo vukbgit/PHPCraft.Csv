@@ -10,7 +10,7 @@ namespace PHPCraft\Csv;
 interface CsvInterface
 {
     /**
-     * Sets delmiter
+     * Sets delimiter
      *
      * @param string $delimiter
      **/
