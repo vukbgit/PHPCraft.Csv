@@ -37,6 +37,6 @@ class CsvGoodby implements CsvInterface
         $exporter = new Exporter($config);
         ob_start();
         $exporter->export('php://output', $records);
-        return ob_get_flush();
+        return ob_get_clean();
     }
 }
