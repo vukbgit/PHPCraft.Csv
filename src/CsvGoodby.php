@@ -35,6 +35,6 @@ class CsvGoodby implements CsvInterface
         $config->setDelimiter($this->delimiter);
         $exporter = new Exporter($config);
         //$writer->output($name.'.csv');
-        $exporter->export('php://output',$records);
+        $exporter->export('php://temp', $records);
     }
 }
