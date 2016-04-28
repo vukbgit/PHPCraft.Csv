@@ -21,6 +21,7 @@ interface CsvInterface
      *
      * @param string $name file name (without csv extension)
      * @param array $records
+     * @return string csv content
      **/
     public function fromObjects($name, array $records);    
 }

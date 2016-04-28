@@ -29,14 +29,14 @@ class CsvGoodby implements CsvInterface
      *
      * @param string $name file name (without csv extension)
      * @param array $records
+     * @return string csv content
      **/
     public function fromObjects($name, array $records){
         $config = new ExporterConfig();
         $config->setDelimiter($this->delimiter);
         $exporter = new Exporter($config);
-        $fp = fopen('php://temp','r');
+        ob_start();
         $exporter->export('php://temp', $records);
-        
-        echo stream_get_contents($fp);
+        return ob_get_flush();
     }
 }
