@@ -1,7 +1,7 @@
 {
     "name": "phpcraft/csv",
     "type": "library",
-    "description": "CSV (Comma Separated Values) reader and writer wrapper",
+    "description": "CSV (Comma Separated Values) reader and writer adapter",
     "license": "MIT",
     "authors": [
 	{
