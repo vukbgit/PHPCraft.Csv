@@ -1,1 +1,4 @@
-CSV reader/writer interface and one concrete class that uses [the PHP League CSV](https://github.com/thephpleague/csv)
+CSV reader/writer adapter:
+
+* interface
+* one concrete class that uses [goodby/csv](https://github.com/goodby/csv)
