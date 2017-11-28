@@ -45,6 +45,9 @@ class CsvGoodbyAdapter implements CsvInterface
     public function fromObjects($name, array $records)
     {
         try{
+            foreach($records as &$record) {
+                $record = (array) $record;
+            }
             $config = new ExporterConfig();
             $config->setDelimiter($this->delimiter);
             if($this->columnHeaders) $config->setColumnHeaders($this->columnHeaders);
