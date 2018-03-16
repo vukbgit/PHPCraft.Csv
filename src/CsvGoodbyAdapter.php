@@ -93,14 +93,26 @@ class CsvGoodbyAdapter implements CsvInterface
             $config->setDelimiter($this->delimiter);
             $lexer = new Lexer($config);
             $interpreter = new Interpreter();
-            $i = 0;
-            $interpreter->addObserver(function(array $row) use (&$i, &$records) {
-                $records[] = array(
-                    'temperature' => $row[0],
-                    'city'        => $row[1],
-                );
-                rt($i);
-                $i++;
+            $rowIndex = 0;
+            $columnHeaders = [];
+            $interpreter->addObserver(function(array $row) use ($hasHeaders, &$rowIndex, &$columnHeaders, &$records) {
+                //store headers
+                if($hasHeaders && $rowIndex === 0) {
+                    $columnHeaders = $row;
+                } else {
+                    $record = [];
+                    foreach($row as $fieldIndex => $fieldValue) {
+                        if($hasHeaders) {
+                            $record[$columnHeaders[$fieldIndex]] = $fieldValue;
+                        } else {
+                            $record[] = $fieldValue;
+                        }
+                    }
+                    //add record
+                    $records[] = $record;
+                }
+                //increment row index
+                $rowIndex++;
             });
             $lexer->parse($path, $interpreter);
             return $records;
