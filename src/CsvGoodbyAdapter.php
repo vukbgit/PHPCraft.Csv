@@ -101,10 +101,13 @@ class CsvGoodbyAdapter implements CsvInterface
                     $columnHeaders = $row;
                 } else {
                     $record = [];
+                    //loop row values
                     foreach($row as $fieldIndex => $fieldValue) {
+                        //store with header name
                         if($hasHeaders) {
                             $record[$columnHeaders[$fieldIndex]] = $fieldValue;
                         } else {
+                        //store with numeric index
                             $record[] = $fieldValue;
                         }
                     }
