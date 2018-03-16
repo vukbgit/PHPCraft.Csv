@@ -117,6 +117,7 @@ class CsvGoodbyAdapter implements CsvInterface
                 //increment row index
                 $rowIndex++;
             });
+            $this->setColumnHeaders($columnHeaders);
             $lexer->parse($path, $interpreter);
             return $records;
         }catch(\Goodby\CSV\Export\Standard\Exception\StrictViolationException $exception){
