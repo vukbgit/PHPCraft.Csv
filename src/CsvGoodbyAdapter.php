@@ -39,6 +39,16 @@ class CsvGoodbyAdapter implements CsvInterface
     }
     
     /**
+     * Gets column headers
+     *
+     * @param array $columnHeaders
+     **/
+    public function getColumnHeaders()
+    {
+        return $this->columnHeaders;
+    }
+    
+    /**
      * creates and outputs CSV from array of objects
      *
      * @param string $name file name (without csv extension)
