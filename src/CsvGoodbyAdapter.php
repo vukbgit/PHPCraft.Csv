@@ -4,6 +4,9 @@ namespace PHPCraft\Csv;
 
 use Goodby\CSV\Export\Standard\Exporter;
 use Goodby\CSV\Export\Standard\ExporterConfig;
+use Goodby\CSV\Import\Standard\Lexer;
+use Goodby\CSV\Import\Standard\Interpreter;
+use Goodby\CSV\Import\Standard\LexerConfig;
 
 /**
  * Reads/creates CSV
@@ -73,5 +76,36 @@ class CsvGoodbyAdapter implements CsvInterface
             'Content-Transfer-Encoding' => 'binary',
             'Content-Disposition' => 'attachment; filename="' . $name . '.csv"'
         ];
+    }
+    
+    /**
+     * reads a csv file and returns records into an array of arrays
+     *
+     * @param string $path to csv file
+     * @param boolean $hasHeaders
+     * @return array with csv content
+     **/
+    public function toArray($path, $hasHeaders = true)
+    {
+        try{
+            $records = [];
+            $config = new LexerConfig();
+            $config->setDelimiter($this->delimiter);
+            $lexer = new Lexer($config);
+            $interpreter = new Interpreter();
+            $i = 0;
+            $interpreter->addObserver(function(array $row) use (&$i, &$records) {
+                $records[] = array(
+                    'temperature' => $row[0],
+                    'city'        => $row[1],
+                );
+                rt($i);
+                $i++;
+            });
+            $lexer->parse($path, $interpreter);
+            return $records;
+        }catch(\Goodby\CSV\Export\Standard\Exception\StrictViolationException $exception){
+            throw new \Exception('Wrong number of columns in CSV creation');
+        }
     }
 }

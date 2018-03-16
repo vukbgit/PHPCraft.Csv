@@ -39,4 +39,13 @@ interface CsvInterface
      * @return array of associative arrays with keys 'name' and 'value'
      **/
     public function buildHttpHeaders($name);
+    
+    /**
+     * reads a csv file and returns records into an array of arrays
+     *
+     * @param string $path to csv file
+     * @param boolean $hasHeaders
+     * @return array with csv content
+     **/
+    public function toArray($path, $hasHeaders = true);
 }
